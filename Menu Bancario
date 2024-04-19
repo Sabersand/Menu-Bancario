@@ -1,0 +1,63 @@
+import java.util.Scanner;
+
+public class Desafio2 {
+
+    public static void main(String[] args) {
+        Scanner teclado = new Scanner(System.in);
+
+        String nombreCliente = "Tony Stark";
+        String tipoDeCuenta = "Corriente";
+        double saldoDisponible = 1599.99;
+        String mensaje = "Nombre del Cliente: " + nombreCliente + "\nTipo de cuenta: " + tipoDeCuenta + "\nSaldo Disponible: " + saldoDisponible;
+        String menu = """
+                *** Escribe el número de la opción deseada ***
+                1 - Consultar saldo
+                2 - Retirar dinero
+                3 - Depositar dinero
+                9 - Salir
+                """;
+        int opcion = 0;
+        double dineroRetirado = 0;
+        double nuevoSaldo = 0;
+        double dineroDepositado = 0;
+
+        System.out.println("\n*********************************************************");
+        System.out.println(mensaje);
+        System.out.println("\n*********************************************************");
+
+
+
+        while (opcion != 9){
+            System.out.println(menu);
+            opcion = teclado.nextInt();
+            switch (opcion){
+                case 1:
+                    System.out.println("Su saldo disponible es de: " + saldoDisponible + "$");
+                    break;
+                case 2:
+                    System.out.println("Ingrese la cantidad de dinero que desea retirar");
+                    dineroRetirado = teclado.nextDouble();
+                    if (dineroRetirado <= saldoDisponible){
+                        nuevoSaldo = saldoDisponible - dineroRetirado;
+                        System.out.println("Su nuevo saldo disponible es de: " + nuevoSaldo + "$");
+                    } else {
+                        System.out.println("No dispone de saldo suficiente para esta transacción");
+                    }
+                    break;
+                case 3:
+                    System.out.println("Ingrese la cantidad de dinero que desea depositar");
+                    dineroDepositado = teclado.nextDouble();
+                    nuevoSaldo = saldoDisponible + dineroDepositado;
+                    System.out.println("Su nuevo saldo disponible es de " + nuevoSaldo + "$");
+                    break;
+                case 9:
+                    System.out.println("Muchas gracias por preferirnos, hasta la proxima");
+                    break;
+                default:
+                    System.out.println("Esa opción no existe, intentelo de nuevo por favor");
+                    break;
+            }
+        }
+
+    }
+}
